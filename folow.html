@@ -1,0 +1,128 @@
+<html>
+	<head>
+		<style>
+@import url('https://cdn.streamelements.com/scripts/animate.min.css');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+* {
+	font-family: 'Montserrat', sans-serif;
+}
+
+#awsome-text-container {
+	background-color: rgba(0, 0, 0, .125);
+	border-radius: 10px;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 5px 14px;
+	position: fixed;
+	right: 10px;
+	width: fit-content;
+}
+
+.animated-letter {
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-fill-mode: both;
+	color: #850BB4;
+	display: inline-block;
+}
+
+.animated-letter:nth-child(1) {
+	animation-delay: 0s;
+}
+
+.animated-letter:nth-child(2) {
+	animation-delay: 0.1s;
+}
+
+.animated-letter:nth-child(3) {
+	animation-delay: 0.2s;
+}
+
+.animated-letter:nth-child(4) {
+	animation-delay: 0.3s;
+}
+
+.animated-letter:nth-child(5) {
+	animation-delay: 0.4s;
+}
+
+.text-container {
+	color: rgb(255, 255, 255);
+	font-size: 16px;
+	margin: auto;
+	overflow: hidden;
+	text-align: center;
+	text-shadow: rgba(0, 0, 0, 0.8) 1px 1px 1px;
+}
+
+.anim-fade-slide-right {
+	position: relative;
+	animation: hide .5s, fade .5s ease .5s, slide-right 1s ease .5s, fade .5s ease 6s 1 reverse forwards, slide-right 1s ease 5.5s 1 reverse forwards;
+}
+
+@keyframes slide-right {
+	from {
+		right: -90px;
+	}
+	to {	
+		right: 10px;
+	}
+}
+
+@keyframes fade {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes hide {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 0;
+	}
+}
+		</style>
+	</head>
+	<body>
+<div class="text-container">
+	<div>
+		<div class="anim-fade-slide-right" id="awsome-text-container">
+		</div>
+		<script>
+			const name = '{{name}}';
+			const animation = '';
+			
+			const varText = ["Thanks for the follow,<br><span id=\"username-container\"></span>!", "<span id=\"username-container\"></span><br>is now following,<br>Thank You!"];
+			
+			document.querySelector('#awsome-text-container').innerHTML = varText[getRndInteger(0, varText.length)];
+			
+			document.querySelector('#username-container').innerHTML = stringToAnimatedHTML(name, animation);
+			
+			/**
+				 * return an html, with animation
+				 * @param s: the text
+				 * @param anim: the animation to use on the text
+				 * @returns {string}
+			 */
+			function stringToAnimatedHTML(s, anim) {
+				let stringAsArray = s.split('');
+				stringAsArray = stringAsArray.map((letter) => {
+					return `<span class="animated-letter ${anim}">${letter}</span>`
+				});
+				return stringAsArray.join('');
+			}
+			
+			function getRndInteger(min, max) {
+				return Math.floor(Math.random() * (max - min)) + min;
+			}
+		</script>
+	</div>
+</div>
+	</body>
+</html>
