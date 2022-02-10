@@ -1,3 +1,0 @@
-I'm a test text.;
-Aha, I'm in between two test text.;
-Heres another test text.
